@@ -29,7 +29,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
-
+      - name: Enable AndroidX
+        run: |
+          echo "android.useAndroidX=true" >> extracted/RCGardropDedektoru/gradle.properties
+          echo "android.enableJetifier=true" >> extracted/RCGardropDedektoru/gradle.properties
       - name: Build APK
         working-directory: extracted/RCGardropDedektoru
         run: gradle :app:assembleDebug --no-daemon
